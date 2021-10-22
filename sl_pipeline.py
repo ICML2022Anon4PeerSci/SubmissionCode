@@ -6,7 +6,7 @@ import pytorch_lightning as pl
 from dataset_loaders import load_mnist, load_fashion_mnist, load_CIFAR10, \
     load_CIFAR100, load_imagenet
 from dynamics.classification import ClassDyn
-from dynamics.naiveResNet import ResNetOutput, ResNetComposedDyn
+from dynamics.naiveResNet import ResNetOutput
 from dynamics.output_coordinates import LinearLastOutput
 from dynamics.resnet_block import ResNetBlockDyn
 from models import *
@@ -67,10 +67,7 @@ OPTIMS = ['Adam', "AdamW", 'SGD', 'RMSprop']
 MODELS = [ "LyaNet", "NeuralOde"] + list(CLASSICAL_MODELS.keys())
 
 DYN_MODEL = {'ClassDyn': ClassDyn,
-             "ResNetBlockDyn": ResNetBlockDyn,
-             "ResNetComposedDyn": ResNetComposedDyn,
-             "SNN_APPROX": None,
-             "SNN": None}
+             "ResNetBlockDyn": ResNetBlockDyn}
 OUTPUT_FUNS = {
     "ResNetOut": lambda in_size, out_size: ResNetOutput(out_size, in_size),
     'LinearLastOutput': LinearLastOutput,

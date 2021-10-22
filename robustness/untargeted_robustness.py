@@ -1,4 +1,5 @@
 import hydra
+from hydra.utils import to_absolute_path
 from omegaconf import OmegaConf
 from ExpConfig import ExpCfg, RobustExpCfg
 from sl_pipeline import config_path
@@ -23,14 +24,16 @@ def main(cfg: RobustExpCfg) -> None:
     exp = SLExperiment(cfg, project='robustness')
     exp_name = exp.create_log_name()
     module = hydra_conf_load_from_checkpoint(
-        cfg.model_file,
+        to_absolute_path(cfg.model_file),
         exp.config.module)
 
     # verify model works
     # exp.run(checkpoint_module=module, test_only=True)
     if cfg.norm == "2":
+        print("[INFO] Using L2 Attack")
         atk = torchattacks.PGDL2(module, steps=10, eps=127 / 255, alpha=2 / 255)
     elif cfg.norm == "inf":
+        print("[INFO] Using L Infinity Attack")
         atk = torchattacks.PGD(module, steps=10, eps=8 / 255, alpha=2 / 255)
     else:
         raise RuntimeError(f"[ERROR] Unsupported norm value: {cfg.norm}.")

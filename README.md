@@ -19,6 +19,10 @@ running:
 tensorboard --logdir ./run_data/tensorboards --reload_multifile True
 ```
 
+Only the model with the best validation error is saved. To quickly verify 
+the the test error of this model, run the adversarial robustness script. It 
+prints the nominal test error before performing the attack.
+
 ## Adversarial Robustness
 
 Assuming the current directory is ``robustness``. Notice that the model file 
@@ -33,17 +37,17 @@ significantly more resources.
 ### L2 Adversarial robustness experiments
 
 ```bash
-python untargerted_robustness.py --config-name classical +dataset=MNIST
-+model_file='../run_data/tensorboards/d.MNIST_m.ClassicalModule(RESNET18)_b.128_lr.0.01_wd.0.0001_mepoch120._sd0/default/version_0/checkpoints/epoch=7-step=3375.ckpt'
-+norm="2"
+PYTHONPATH=../ python untargeted_robustness.py --config-name classical norm="2" \
++dataset=MNIST \
+"+model_file='../run_data/tensorboards/d.MNIST_m.ClassicalModule(RESNET18)_b.128_lr.0.01_wd.0.0001_mepoch120._sd0/default/version_0/checkpoints/epoch=7-step=3375.ckpt'"
 ```
 
 ### L Infinity Adversarial robustness experiments
 
 ```bash
-python untargerted_robustness.py --config-name classical +dataset=MNIST
-+model_file='../run_data/tensorboards/d.MNIST_m.ClassicalModule(RESNET18)_b.128_lr.0.01_wd.0.0001_mepoch120._sd0/default/version_0/checkpoints/epoch=7-step=3375.ckpt'
-+norm="2"
+PYTHONPATH=../ python untargeted_robustness.py --config-name classical \
+norm="inf"  +dataset=MNIST \
+"+model_file='../run_data/tensorboards/d.MNIST_m.ClassicalModule(RESNET18)_b.128_lr.0.01_wd.0.0001_mepoch120._sd0/default/version_0/checkpoints/epoch=7-step=3375.ckpt'"
 ```
 
 ### Datasets supported
