@@ -26,12 +26,12 @@ prints the nominal test error before performing the attack.
 ## Adversarial Robustness
 
 Assuming the current directory is ``robustness``. Notice that the model file 
-name will be different depending on the dataset and modeel combination you 
-have run. This path provided should provide an idea of the path structure 
-where models are stored.
+name will be different depending on the dataset and model combination you 
+have run. The path provided should provide an idea of the directory structure 
+where models are stored. 
 
 These scripts will print the testing error, followed by the testing error 
-with adversarial robustness. Notice adversarial testing requires 
+with and adversarial attack. Notice adversarial testing requires 
 significantly more resources.
 
 ### L2 Adversarial robustness experiments
