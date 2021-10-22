@@ -68,12 +68,12 @@ norm="inf"  +dataset=MNIST \
   differentiation
 * ```continuous_net_lyapunov```: ContinuousNet from [1] trained with LyaNet 
 
-##A Note on Libs
+## A Note on Libs
 
 Both Nero[2] and ContinuousNet[1] are modified to work with LyaNet. Forks are 
 included here without history for the purposes of anonymity.
 
-##References
+## References
 1. [Continuous-in-Depth Neural Networks](https://arxiv.org/abs/2008.02389) 
    [Code](https://github.com/afqueiruga/ContinuousNet)
 2. [Learning by Turning: Neural Architecture Aware Optimisation](https://arxiv.org/abs/2102.07227)
